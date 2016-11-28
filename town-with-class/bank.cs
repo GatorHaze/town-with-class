@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace town_with_class
 {
-    class bank
+    class bank : buildings
     {
         string BuildingType { get; set; }
         string constructionMaterial { get; set; }
@@ -23,6 +23,7 @@ namespace town_with_class
         int currentOcc { get; } = 0;
 
         string squareFootage { get; }
+
         private double amountOfMoney { get; set; } = 0d;
 
     }

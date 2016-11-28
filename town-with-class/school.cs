@@ -6,24 +6,56 @@ using System.Threading.Tasks;
 
 namespace town_with_class
 {
-    class school
+    public class school : buildings
     {
-        string BuildingType { get; set; }
-        string constructionMaterial { get; set; }
-        int NumberOfRoom { get; set; } = 1;
-        double height { get; set; } = 0d;
-        double width { get; set; } = 0d;
-        double length { get; set; } = 0d;
-        int floors { get; set; }
-        int BathRooms { get; set; }
+        public bool inSession { get; set; } = true;
+        public int Teachers { get; set; }
+        public int Students { get; set; }
+    
+        private static int GCD(int a, int b)
+        {
+            while (b > 0)
+            {
+                var rem = a % b;
+                a = b;
+                b = rem;
+            }
+            return a;
+        }
+        public string TeacherStudentRatio()
+        {
+            var biggest = 0d;
+            var smallest = 0d;
+            if (Teachers >= Students)
+            {
+                biggest = Teachers;
+                smallest = Students;
+            }
+            else
+            {
+                biggest = Students;
+                smallest = Teachers;
+            }
 
-        string Volume { get; }
-        string Address { get; } = "Address1, Address2, city, state, zip";
-        int currentOcc { get; } = 0;
-        int numberOfStudents { get; set; }
-        int numberOfTeachers { get; set; }
+            var gcd = GCD((int)smallest, (int)biggest);
+            
+            var teacher = this.Teachers / gcd;
+            var students = this.Students / gcd;
+            var rv = $"{teacher} : {students}";
+            return rv;
+        }
 
-        string squareFootage { get; }
+        public bool InSession
+        {
+            get
+            {
+                return (this.inSession);
+            }
+        }
+
+    }
     }
 
 }
+
+        
